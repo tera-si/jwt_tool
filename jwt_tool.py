@@ -211,7 +211,7 @@ def jwtOut(token, fromMod, desc=""):
         p = re.compile(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*')
 
         if config['argvals']['headerloc'] == "cookies":
-            cookietoken = p.subn(token, config['argvals']['cookies'], 0)
+            cookietoken = p.subn(token, config['argvals']['cookies'], 1)
         else:
             cookietoken = [config['argvals']['cookies'],0]
 
