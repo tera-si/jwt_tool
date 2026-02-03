@@ -219,10 +219,13 @@ def jwtOut(token, fromMod, desc=""):
             headertoken = [[],0]
             for eachHeader in args.headers:
                 try:
+                    if headertoken[1] > 0:
+                        headertoken[0].append(eachHeader)
+                        continue
                     headerSub = p.subn(token, eachHeader, 0)
                     headertoken[0].append(headerSub[0])
                     if headerSub[1] == 1:
-                        headertoken[1] = 1
+                        headertoken[1] += 1
                 except:
                     pass
         else:
@@ -245,7 +248,7 @@ def jwtOut(token, fromMod, desc=""):
 
 
         # Check if token was included in substitution
-        if cookietoken[1] == 1 or headertoken[1] == 1 or posttoken[1]:
+        if cookietoken[1] == 1 or headertoken[1] >= 1 or posttoken[1]:
             resData = sendToken(token, cookiedict, logID, headertoken[0], posttoken[0])
         else:
             if config['argvals']['overridesub'] == "true":
