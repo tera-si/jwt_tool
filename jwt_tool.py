@@ -232,7 +232,7 @@ def jwtOut(token, fromMod, desc=""):
                         headertoken[0].append(eachHeader)
 
         if config['argvals']['headerloc'] == "postdata":
-            posttoken = p.subn(token, config['argvals']['postdata'], 0)
+            posttoken = p.subn(token, config['argvals']['postdata'], 1)
         else:
             posttoken = [config['argvals']['postdata'],0]
 
